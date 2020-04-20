@@ -5,13 +5,13 @@ import { Droppable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
 const TrelloList = ({ title,listId,cards}) => {
-    console.log("Cards",cards);
+    //console.log("Cards",cards);
 
     const cardsForCurrentList = cards.filter(function (el){
         return el.belongsToList=== listId
     });
 
-    console.log("Cards for Current List",cardsForCurrentList);
+    //console.log("Cards for Current List",cardsForCurrentList);
     return(
         <Droppable droppableId={String(listId)}>
             { provided => (

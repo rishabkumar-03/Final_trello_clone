@@ -65,24 +65,23 @@ const DialogActions = withStyles((theme) => ({
 const CustomizedDialogs = ( {text,id,listid,description}) => {
 
   const lists = useSelector(state=>state.lists.listArray);
-  console.log("Lists---->Description Box",lists);
-  console.log("List ID CHECKKKK ---------------------->>>>",listid);
+  
 
   const [destList,setDestList] = React.useState(listid);
-  console.log("Destination List ID",destList);
+  
 
   const descriptionDialog = React.useRef('');
 
   // console.log("Description ref",descriptionDialog.current);
 
-  console.log("Description",description);
+  
 
   const [open, setOpen] = React.useState(false);
   
   
   const dispatch = useDispatch();
 
-  console.log("Hi from Description Dialog....PROPS",text,id,listid);
+  
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -111,7 +110,7 @@ const CustomizedDialogs = ( {text,id,listid,description}) => {
 
   const handleCloseNSave= () => {
     setOpen(false);
-    console.log("Present Description",descriptionDialog.current.value);
+    
     let newDescription = descriptionDialog.current.value;
     dispatch(setDescription(newDescription,id));
   };

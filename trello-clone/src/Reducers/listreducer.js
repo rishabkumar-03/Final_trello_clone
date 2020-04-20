@@ -1,7 +1,7 @@
 import { ACTIONS } from '../Actions';
 
 let listId = 3;
-let cardId = 4;
+let cardId = 5;
 
 const initialState = {
     boardTitle: 'App planning',
@@ -31,11 +31,17 @@ const initialState = {
             description:"Reducers for actions"
         },
         {
+            cardId:4,
+            belongsToList:1,
+            title:"Actions",
+            description:""
+        },
+        {
             cardId:3,
             belongsToList:2,
             title:"Debugging",
             description:""
-        },
+        }
     
     ]
 } 
@@ -76,26 +82,29 @@ const ListsReducer = (state= initialState, action) => {
                 droppableIndexEnd,
                 droppableIndexStart,
                 draggableId } = action.payload;
-            const newState = {...state};
+            let newCardArrayDrag = [...state.cardArray];
+
+            let cardIdcheck = parseInt(draggableId);
+            let droppableIdcheck = parseInt(droppableIdEnd);
+
             if(droppableIdStart === droppableIdEnd) {
-                let dropList = state.listArray.find( list => droppableIndexStart === list.id );
-                const card = dropList.cards.splice(droppableIndexStart, 1);
-                dropList.cards.splice(droppableIndexEnd, 0, ...card);
-                
+                let addCard = newCardArrayDrag.splice(droppableIndexStart, 1);
+                newCardArrayDrag.splice(droppableIndexEnd, 0, addCard[0]);
             }
 
             if(droppableIdStart !== droppableIdEnd){
-                const newStartList = state.listArray.find( list => droppableIndexStart === list.id );
+                
+                for(i in newCardArrayDrag){
+                    if(newCardArrayDrag[i].cardId===cardIdcheck){
+                        newCardArrayDrag[i].belongsToList=droppableIdcheck;
+                    }
+                } 
 
-                const card = newStartList.cards.splice( droppableIndexStart, 1);
-
-                const newDropList = state.listArray.find( list => droppableIndexEnd === list.id );
-
-                newDropList.cards.splice( droppableIndexEnd, 0, ...card);
 
             }
+            console.log("New Array after drag",newCardArrayDrag);
 
-            return newState;
+            return {...state,cardArray:newCardArrayDrag};
 
         case "DELETECARD":
             
@@ -104,24 +113,35 @@ const ListsReducer = (state= initialState, action) => {
             let newCardArraySave = newCardArrayDelete.filter(function (el){
                 return el.cardId!==action.payload
             });
+
+            
+
             
             return { ...state,cardArray:newCardArraySave};
 
         case "MOVECARD":
             
             let newCardArrayMove = [...state.cardArray];
-            let cardpos = action.payload.cardId - 1 ;
-            newCardArrayMove[cardpos].belongsToList = action.payload.destListid; 
+            var i;
+            for(i in newCardArrayMove){
+                if(newCardArrayMove[i].cardId===action.payload.cardId){
+                    newCardArrayMove[i].belongsToList=action.payload.destListid;
+                }
+            } 
 
             return { ...state,cardArray:newCardArrayMove};
 
         case "SETDESCRIPTION":
             
             let newCardArrayDescription = [...state.cardArray];
-            let cardposNew = action.payload.cardId - 1 ;
-       
-            newCardArrayDescription[cardposNew].description = action.payload.description;
-       
+
+            var x;
+            for(x in newCardArrayDescription){
+                if(newCardArrayDescription[x].cardId===action.payload.cardId){
+                    newCardArrayDescription[x].description=action.payload.description;
+                }
+            } 
+            
             console.log("New Cards Array Save",newCardArrayDescription);
                    
        

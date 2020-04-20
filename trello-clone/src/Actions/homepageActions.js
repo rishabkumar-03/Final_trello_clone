@@ -1,16 +1,9 @@
-export const SetColor = (color) =>{
-    return{
+export const setColor = (color) =>{
+     return{
         type:"SETCOLOR",
         payload:color
     }
 
-}
-
-export const SetMenu = (value) =>{
-    return{
-        type:"SETMENU",
-        payload:value
-    }
 }
 
 export const setLoginLevel = (value) =>{

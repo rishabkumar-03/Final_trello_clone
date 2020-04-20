@@ -9,7 +9,7 @@ import CustomizedDialogs from './description-box';
 
 
 const TrelloCard = ({ text,id,index,listid,description}) => {
-    console.log("ListId",listid);
+    //console.log("ListId",listid);
     return(
         <Draggable draggableId={String(id)} index={index} >
             { provided => (

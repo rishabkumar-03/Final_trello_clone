@@ -7,11 +7,11 @@ import MenuButton from './menu-button';
 import logo from '../trello2copy.jpg';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { sort } from '../Actions/listsActions';
-import UserData from './UserData';
+//import UserData from './UserData';
 import { Icon } from '@material-ui/core';
 import HeaderComponent from './HeaderComponent';
 
-class Dashboard extends React.Component {
+class TrelloBoard extends React.Component {
 
   
   onDragEnd = ( result ) => {
@@ -26,7 +26,10 @@ class Dashboard extends React.Component {
       source.index,
       destination.index,  
       draggableId)
-      );
+      ); 
+      console.log("PROPS DRAG END---DESTINATIOM",destination);
+      console.log("PROPS DRAG END---SOURCE",source);
+      console.log("DRAGGABLE ID",draggableId);
   };
 
      
@@ -37,10 +40,8 @@ class Dashboard extends React.Component {
   render() {
     
     const { lists,heading,color,name } = this.props;
-    console.log("rishab", name);
-    //const { heading } = this.props;
+    //console.log("rishab", name);
     
-
     return (
       <div style={{ height: "100vh", backgroundColor: color}}>
         <div>
@@ -70,4 +71,4 @@ class Dashboard extends React.Component {
     heading: state.lists.boardTitle
   });
 
-export default connect(mapStateToProps,null)(Dashboard);
+export default connect(mapStateToProps,null)(TrelloBoard);

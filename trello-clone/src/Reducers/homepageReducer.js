@@ -2,7 +2,6 @@ const initialState={
     loginLevel:0,
     nameUser:null,
     color:"rgb(60,179,113)",
-    menuOpen:false
 }
 
 const HomeReducer = (state=initialState,action) =>{
@@ -11,12 +10,6 @@ const HomeReducer = (state=initialState,action) =>{
             let newColor = action.payload;
             return {...state, color: newColor}
             
-
-         case "SETMENU":
-            let newMenu=action.payload;
-            return {...state,
-                    menuOpen:newMenu};
-        
         case "SETLOGINLEVEL":
             let level = action.payload;
             return {...state, loginLevel: level}

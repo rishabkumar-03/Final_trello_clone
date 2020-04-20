@@ -2,15 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import SignIn from './VIEWS/signIn';
-import Dashboard from './Components/dashboard';
+import TrelloBoard from './Components/TrelloBoard';
 
 const App =({loginLevel,nameUser})=> {
 
-  console.log("USER DETAILS",loginLevel,nameUser);
+  //console.log("USER DETAILS",loginLevel,nameUser);
 
   return (
     (loginLevel===0)?
-    (<SignIn/>):(<Dashboard name={nameUser}/>)
+    (<SignIn/>):(<TrelloBoard name={nameUser}/>)
   )
      
       

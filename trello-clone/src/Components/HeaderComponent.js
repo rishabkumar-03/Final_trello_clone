@@ -8,7 +8,7 @@ const HeaderComponent = ({name}) => {
         <header style={ styles.headerContent}>
             <div style={ { color: "white",display:"flex", flexDirection: "row",margin: "2px", padding: "3px", maxHeight: "40px", maxWidth: "200px", border: "none", borderRadius: "8px", backgroundColor: "hsla(0,0%,100%,.24)"}}>
                 <input type="search" style={{ border: "none", borderRadius: "8px", backgroundColor: "hsla(0,0%,100%,.24)"}} />
-                <Icon color= "white">search</Icon>
+                <Icon color="white">search</Icon>
             </div>
             <img src={logo}  alt=" trello" style={{ minWidth: "10px", minHeight: "10px"}}/>
             <UserData name={name}/>
